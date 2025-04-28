@@ -1,22 +1,31 @@
 // Function to create confetti animation
 function createConfetti() {
     const confettiContainer = document.getElementById('confetti');
+    
+    // Create 225 confetti pieces
     for (let i = 0; i < 225; i++) {
         const confettiPiece = document.createElement('div');
         confettiPiece.classList.add('confetti-piece');
-        confettiPiece.style.width = `${Math.random() * (18 - 5) + 5}px`; // Random size
-        confettiPiece.style.height = confettiPiece.style.width;
-        confettiPiece.style.backgroundColor = getRandomColor(); // Random color
-        confettiPiece.style.left = `${Math.random() * window.innerWidth}px`; // Random x position
-        confettiPiece.style.animationDelay = `${Math.random() * 3}s`; // Random delay for each piece to stagger the animation
+        
+        // Randomize size, position, and color
+        const size = Math.random() * (18 - 5) + 5;
+        confettiPiece.style.width = `${size}px`;
+        confettiPiece.style.height = `${size}px`;
+        
+        // Set random color
+        const colors = ['red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'cyan'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        confettiPiece.style.backgroundColor = randomColor;
+        
+        // Set random x position
+        confettiPiece.style.left = `${Math.random() * window.innerWidth}px`;
+        
+        // Set random animation delay for staggered fall
+        confettiPiece.style.animationDelay = `${Math.random() * 3}s`;
+        
+        // Add confetti piece to container
         confettiContainer.appendChild(confettiPiece);
     }
-}
-
-// Helper function to get random colors for confetti
-function getRandomColor() {
-    const colors = ['red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'cyan'];
-    return colors[Math.floor(Math.random() * colors.length)];
 }
 
 // Function to read and parse CSV file and display birthdays
@@ -93,7 +102,7 @@ function refreshAtMidnight() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    createConfetti();
+    createConfetti(); // Call to generate and animate confetti
     loadBirthdays();
     refreshAtMidnight(); // Call the function to refresh at midnight
 });
