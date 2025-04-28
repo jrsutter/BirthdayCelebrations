@@ -8,7 +8,7 @@ function createConfetti() {
         confettiPiece.style.height = confettiPiece.style.width;
         confettiPiece.style.backgroundColor = getRandomColor(); // Random color
         confettiPiece.style.left = `${Math.random() * window.innerWidth}px`; // Random x position
-        confettiPiece.style.top = `${Math.random() * window.innerHeight}px`; // Random y position
+        confettiPiece.style.animationDelay = `${Math.random() * 3}s`; // Random delay for each piece to stagger the animation
         confettiContainer.appendChild(confettiPiece);
     }
 }
@@ -76,8 +76,24 @@ function displayBirthdays(currentBirthday, pastBirthday, upcomingBirthday) {
     });
 }
 
+// Function to calculate milliseconds remaining until midnight and refresh page
+function refreshAtMidnight() {
+    const now = new Date();
+    const midnight = new Date();
+    midnight.setHours(24, 0, 0, 0); // Set to midnight (00:00:00.000)
+
+    // Calculate how many milliseconds are left until midnight
+    const timeUntilMidnight = midnight - now;
+
+    // Set a timeout to refresh the page when midnight arrives
+    setTimeout(() => {
+        location.reload(); // Refresh the page
+    }, timeUntilMidnight);
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     createConfetti();
     loadBirthdays();
+    refreshAtMidnight(); // Call the function to refresh at midnight
 });

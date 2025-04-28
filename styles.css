@@ -3,6 +3,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
+    position: relative;  /* Ensure confetti is above other content */
 }
 
 #confetti {
@@ -20,7 +21,7 @@ body {
     width: 10px;
     height: 10px;
     background-color: #ff5733;
-    animation: fall 3s infinite;
+    animation: fall 4s linear infinite, rotate 3s linear infinite;  /* Add both falling and rotating animations */
 }
 
 @keyframes fall {
@@ -29,6 +30,15 @@ body {
     }
     100% {
         transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 
