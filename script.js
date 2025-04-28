@@ -4,13 +4,11 @@ function createConfetti() {
     for (let i = 0; i < 225; i++) {
         const confettiPiece = document.createElement('div');
         confettiPiece.classList.add('confetti-piece');
-        confettiPiece.style.position = 'absolute';
-        confettiPiece.style.width = `${Math.random() * (18 - 5) + 5}px`;
+        confettiPiece.style.width = `${Math.random() * (18 - 5) + 5}px`; // Random size
         confettiPiece.style.height = confettiPiece.style.width;
-        confettiPiece.style.backgroundColor = getRandomColor();
-        confettiPiece.style.left = `${Math.random() * window.innerWidth}px`;
-        confettiPiece.style.top = `${Math.random() * window.innerHeight}px`;
-        confettiPiece.style.animation = 'fall 3s linear infinite';
+        confettiPiece.style.backgroundColor = getRandomColor(); // Random color
+        confettiPiece.style.left = `${Math.random() * window.innerWidth}px`; // Random x position
+        confettiPiece.style.top = `${Math.random() * window.innerHeight}px`; // Random y position
         confettiContainer.appendChild(confettiPiece);
     }
 }
@@ -21,9 +19,9 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-// Function to read CSV file and parse birthdays
+// Function to read and parse CSV file and display birthdays
 function loadBirthdays() {
-    // Replace with actual file path on your server (this assumes you're using GitHub Pages with a CSV file)
+    // Replace with the actual path to your CSV file in the repository
     const filePath = 'birthdays.csv'; 
 
     Papa.parse(filePath, {
